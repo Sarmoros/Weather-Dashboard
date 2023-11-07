@@ -5,3 +5,7 @@ header {
     background-color: rgb(53, 3, 99);
     color: white;
 }
+
+button {
+    margin-top: 20px;
+}
