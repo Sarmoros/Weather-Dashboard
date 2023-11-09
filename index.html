@@ -11,19 +11,26 @@
 
 <body>
     <header>Weather Dashboard</header>
-    <div class="flex-row align-start align-stretch-md align-content-start align-content-stretch-md min-100-vh ">
+    <div class="top-section">
+      <div class="flex-row align-start align-stretch-md align-content-start align-content-stretch-md min-100-vh ">
         <div class="col-12 col-md-3 p-3">
           <h1>Search for a City:</h1>
           <form id="search-form" class="mb-2">
             <input id="search-input" class="form-input w-100" type="text" placeholder="Search!">
-            <button class="btn btn-info btn-block btn-dark d-grid gap-2 col-12 mx-auto">Search</button>
+            <button id="search-button" class="btn btn-info btn-block btn-dark d-grid gap-2 col-12 mx-auto">Search</button>
           </form>
+          <ul class="city-searches"></ul>
         </div>
     
         <div class="col-12 col-md-9 p-3">
           <h2>Showing results for <span id="result-text"></span></h2>
           <div id="result-content"></div>
         </div>
+
+        
+
+    </div>
+
         <script src="./assets/script.js"></script>
 </body>
 
