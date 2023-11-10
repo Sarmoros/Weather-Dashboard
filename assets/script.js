@@ -1,6 +1,5 @@
 var APIKey = "3484fb7b5febe1605342141d4f9ba608";
   
-
 var cityInput = document.getElementById('search-input');
 var searchButton = document.getElementById('search-button');
 var citySearch = document.querySelector('.city-searches');
@@ -25,7 +24,8 @@ function searchCity(city) {
 
         // Displays the current date
         document.getElementById('result-date').textContent = ", " + formattedDate;
-      
+        
+        // Displays current weather for user chosen city
         var currentWeather = `
             <h3>Current Weather</h3>
             <p>Temperature: ${data.main.temp}°F</p>
