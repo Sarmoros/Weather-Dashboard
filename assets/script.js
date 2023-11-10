@@ -36,7 +36,7 @@ function searchCity(city) {
         `;
         document.getElementById('result-content').innerHTML = currentWeather;
 
-
+        // 5 day forecast data to display on the page
         fetch(forecastURL)
                 .then((response) => {
                     return response.json();
@@ -44,16 +44,19 @@ function searchCity(city) {
                 .then(forecastData => {
                     console.log(forecastData);
 
-                    // Process forecast data and display it on the page
                     var forecastContent = document.getElementById('forecast-content');
-                    forecastContent.innerHTML = ''; // Clear any previous forecast data
+                    forecastContent.innerHTML = '';
+
+                    var forecastTitle = document.createElement('h3');
+                    forecastTitle.textContent = '5 Day Forecast';
+                    forecastContent.appendChild(forecastTitle);
 
                     for (let i = 0; i < forecastData.list.length; i += 8) {
                         const forecast = forecastData.list[i];
-                        const date = new Date(forecast.dt * 1000); // Convert timestamp to date
+                        const date = new Date(forecast.dt * 1000);
 
                         var forecastElement = document.createElement('div');
-                        forecastElement.classList.add('forecast-item');
+                        forecastElement.classList.add('col-md-2', 'mb-3');
                         forecastElement.innerHTML = `
                             <h4>${date.toLocaleDateString()}</h4>
                             <img src="http://openweathermap.org/img/w/${forecast.weather[0].icon}.png" alt="${forecast.weather[0].description}">

@@ -18,3 +18,14 @@ ul {
     border-top: solid 1px black;
 }
 
+#forecast-content {
+    padding-top: 20px;
+
+}
+
+#forecast-content div {
+    background-color: rgb(2, 2, 36);
+    color: white;
+}
+
+
