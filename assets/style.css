@@ -8,5 +8,13 @@ header {
 
 button {
     margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    font-size: 20px;
+    text-decoration: black;
+    border-top: solid 1px black;
 }
 
