@@ -59,7 +59,7 @@ function searchCity(city) {
                         forecastElement.classList.add('col-md-2', 'mb-3');
                         forecastElement.innerHTML = `
                             <h4>${date.toLocaleDateString()}</h4>
-                            <img src="http://openweathermap.org/img/w/${forecast.weather[0].icon}.png" alt="${forecast.weather[0].description}">
+                            <img src="https://openweathermap.org/img/w/${forecast.weather[0].icon}.png" alt="${forecast.weather[0].description}">
                             <p>Temperature: ${forecast.main.temp} °F</p>
                             <p>Humidity: ${forecast.main.humidity} %</p>
                             <p>Wind Speed: ${forecast.wind.speed} m/s</p>
