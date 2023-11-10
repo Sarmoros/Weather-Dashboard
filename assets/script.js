@@ -4,9 +4,7 @@ var APIKey = "3484fb7b5febe1605342141d4f9ba608";
 var cityInput = document.getElementById('search-input');
 var searchButton = document.getElementById('search-button');
 var citySearch = document.querySelector('.city-searches');
-  
 
-//https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 
 // Function for api to grab the user input's city's weather info
 function searchCity(city) {
