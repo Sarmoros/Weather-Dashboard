@@ -11,6 +11,7 @@ var citySearch = document.querySelector('.city-searches');
 // Function for api to grab the user input's city's weather info
 function searchCity(city) {
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
+    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + APIKey;
 
     fetch(queryURL)
         .then((response) => {
@@ -19,6 +20,13 @@ function searchCity(city) {
         .then(data => {
         console.log(data);
         document.getElementById('result-text').textContent = city;
+
+        var currentDate = new Date();
+        var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+        var formattedDate = currentDate.toLocaleDateString('en-US', options);
+
+        // Displays the current date
+        document.getElementById('result-date').textContent = ", " + formattedDate;
       
         var currentWeather = `
             <h3>Current Weather</h3>
@@ -28,13 +36,38 @@ function searchCity(city) {
         `;
         document.getElementById('result-content').innerHTML = currentWeather;
 
-        //var lat= data.coord.lat
-        //var lon=data.coord.lon
-        //fetch("https://openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + APIKey).then((response)=> {
-            //return response.json()
-        //}) .then((weatherdata)=>{
-            //console.log(weatherdata)
-        //})
+
+        fetch(forecastURL)
+                .then((response) => {
+                    return response.json();
+                })
+                .then(forecastData => {
+                    console.log(forecastData);
+
+                    // Process forecast data and display it on the page
+                    var forecastContent = document.getElementById('forecast-content');
+                    forecastContent.innerHTML = ''; // Clear any previous forecast data
+
+                    for (let i = 0; i < forecastData.list.length; i += 8) {
+                        const forecast = forecastData.list[i];
+                        const date = new Date(forecast.dt * 1000); // Convert timestamp to date
+
+                        var forecastElement = document.createElement('div');
+                        forecastElement.classList.add('forecast-item');
+                        forecastElement.innerHTML = `
+                            <h4>${date.toLocaleDateString()}</h4>
+                            <img src="http://openweathermap.org/img/w/${forecast.weather[0].icon}.png" alt="${forecast.weather[0].description}">
+                            <p>Temperature: ${forecast.main.temp} °F</p>
+                            <p>Humidity: ${forecast.main.humidity} %</p>
+                            <p>Wind Speed: ${forecast.wind.speed} m/s</p>
+                        `;
+
+                        forecastContent.appendChild(forecastElement);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching forecast data:', error);
+                });
         })
 
         .catch(error => {
